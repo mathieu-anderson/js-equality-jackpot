@@ -119,6 +119,7 @@ const sourceValues: any[] = [
 
 type Operator = '==' | '===' | '!=' | '!=='
 const operators: Operator[] = ['==', '===', '!=', '!==']
+const crazyOperators: Operator[] = ['==', '!=']
 
 const operatorSubtitles: { [index: string]: string } = {
   '==': 'is equal to',
@@ -140,6 +141,7 @@ const App: React.FC = () => {
   const [operator, setOperator] = useState(getRandomArrayMember(operators) as Operator)
   const [result, setResult] = useState(getResult(values.left, values.right, operator).toString())
   const [rotate, setRotate] = useState(false)
+  const [crazyMode, setCrazyMode] = useState(false)
   return (
     <div className='App'>
       <header className='App-header'>JavaScript Equality Jackpot</header>
@@ -151,7 +153,9 @@ const App: React.FC = () => {
               setRotate(false)
               const nextLeftValue = getRandomArrayMember(sourceValues)
               const nextRightValue = getRandomArrayMember(sourceValues)
-              const nextOperator = getRandomArrayMember(operators) as Operator
+              const nextOperator = crazyMode
+                ? (getRandomArrayMember(crazyOperators) as Operator)
+                : (getRandomArrayMember(operators) as Operator)
               setValues({
                 left: nextLeftValue,
                 right: nextRightValue,
@@ -186,7 +190,18 @@ const App: React.FC = () => {
           }}
         >
           Roll
-        </button>
+        </button>{' '}
+        <div className='Slots-checkbox'>
+          <input
+            className={crazyMode ? 'Slots-checkbox-input crazy' : 'Slots-checkbox-input'}
+            type='checkbox'
+            checked={crazyMode}
+            onChange={() => setCrazyMode(!crazyMode)}
+          />
+          <div className={crazyMode ? 'Slots-checkbox-label crazy' : 'Slots-checkbox-label'}>
+            Crazy mode (no strict equalities)
+          </div>
+        </div>
       </section>
     </div>
   )
