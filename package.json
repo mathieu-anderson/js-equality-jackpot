@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && surge --project ./build --domain equality-jackpot.surge.sh"
+    "deploy": "npm run build && surge --project ./build --domain js-equality-jackpot.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
