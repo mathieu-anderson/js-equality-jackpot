@@ -41,9 +41,12 @@
   margin: 1rem;
 }
 
+.Slots-button:hover {
+  background-color: rgb(98, 98, 255);
+}
+
 .rotate {
-  -webkit-animation: rotate-hor-center 0.5s
-    cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  -webkit-animation: rotate-hor-center 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
   animation: rotate-hor-center 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 

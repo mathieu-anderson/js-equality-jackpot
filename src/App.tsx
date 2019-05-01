@@ -35,11 +35,7 @@ const getStringifiedValue = (value: any): string => {
   }
 }
 
-const getResult = (
-  leftValue: any,
-  rightValue: any,
-  operator: Operator
-): boolean => {
+const getResult = (leftValue: any, rightValue: any, operator: Operator): boolean => {
   if (isEqual(operator, '==')) {
     return leftValue == rightValue
   } else if (isEqual(operator, '===')) {
@@ -62,25 +58,13 @@ const getWeirdnessStatement = (
     weirdEqualities.includes(`${rightValue} ${operator} ${leftValue}`)
   ) {
     return (
-      <div
-        className={
-          result === 'true'
-            ? 'Slots-line-results-true'
-            : 'Slots-line-results-false'
-        }
-      >
+      <div className={result === 'true' ? 'Slots-line-results-true' : 'Slots-line-results-false'}>
         {result} AND FKEN WEIRD
       </div>
     )
   } else {
     return (
-      <div
-        className={
-          result === 'true'
-            ? 'Slots-line-results-true'
-            : 'Slots-line-results-false'
-        }
-      >
+      <div className={result === 'true' ? 'Slots-line-results-true' : 'Slots-line-results-false'}>
         {result}
       </div>
     )
@@ -153,49 +137,53 @@ const App: React.FC = () => {
     left: getRandomArrayMember(sourceValues),
     right: getRandomArrayMember(sourceValues),
   })
-  const [operator, setOperator] = useState(getRandomArrayMember(
-    operators
-  ) as Operator)
-  const [result, setResult] = useState(
-    getResult(values.left, values.right, operator).toString()
-  )
+  const [operator, setOperator] = useState(getRandomArrayMember(operators) as Operator)
+  const [result, setResult] = useState(getResult(values.left, values.right, operator).toString())
   const [rotate, setRotate] = useState(false)
   return (
     <div className='App'>
       <header className='App-header'>JavaScript Equality Jackpot</header>
       <section className='Slots'>
         <div className='Slots-line'>
-          <div className='Slots-line-slot'>
+          <div
+            className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}
+            onAnimationEnd={() => {
+              setRotate(false)
+              const nextLeftValue = getRandomArrayMember(sourceValues)
+              const nextRightValue = getRandomArrayMember(sourceValues)
+              const nextOperator = getRandomArrayMember(operators) as Operator
+              setValues({
+                left: nextLeftValue,
+                right: nextRightValue,
+              })
+              setOperator(nextOperator)
+              setResult(getResult(nextLeftValue, nextRightValue, nextOperator).toString())
+            }}
+          >
             {getStringifiedValue(values.left)}
           </div>
           <div className='Slots-line-slot-withSubtitle'>
-            <div className='Slots-line-slot'>{operator}</div>
-            <div className='Slots-line-slot-subtitle'>
-              {operatorSubtitles[operator]}
+            <div
+              className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}
+              onAnimationEnd={() => setRotate(false)}
+            >
+              {operator}
             </div>
+            <div className='Slots-line-slot-subtitle'>{operatorSubtitles[operator]}</div>
           </div>
-          <div className='Slots-line-slot'>
+          <div
+            className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}
+            onAnimationEnd={() => setRotate(false)}
+          >
             {getStringifiedValue(values.right)}
           </div>
         </div>
         {getWeirdnessStatement(result, values.left, values.right, operator)}
         <button
-          className={`Slots-button ${rotate ? 'rotate' : ''}`}
+          className='Slots-button'
           onClick={() => {
             setRotate(true)
-            const nextLeftValue = getRandomArrayMember(sourceValues)
-            const nextRightValue = getRandomArrayMember(sourceValues)
-            const nextOperator = getRandomArrayMember(operators) as Operator
-            setValues({
-              left: nextLeftValue,
-              right: nextRightValue,
-            })
-            setOperator(nextOperator)
-            setResult(
-              getResult(nextLeftValue, nextRightValue, nextOperator).toString()
-            )
           }}
-          onAnimationEnd={() => setRotate(false)}
         >
           Roll
         </button>
