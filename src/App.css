@@ -28,6 +28,7 @@
 }
 
 .Slots-button {
+  font-family: Arial, Helvetica, sans-serif;
   background-color: #aaf;
   cursor: pointer;
   border: none;
@@ -56,6 +57,7 @@
 
 .Slots-checkbox-label {
   font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
 }
 
 .crazy {

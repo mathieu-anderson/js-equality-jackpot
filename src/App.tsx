@@ -191,7 +191,7 @@ const App: React.FC = () => {
         >
           Roll
         </button>{' '}
-        <div className='Slots-checkbox'>
+        <label className='Slots-checkbox'>
           <input
             className={crazyMode ? 'Slots-checkbox-input crazy' : 'Slots-checkbox-input'}
             type='checkbox'
@@ -201,7 +201,7 @@ const App: React.FC = () => {
           <div className={crazyMode ? 'Slots-checkbox-label crazy' : 'Slots-checkbox-label'}>
             Crazy mode (no strict equalities)
           </div>
-        </div>
+        </label>
       </section>
     </div>
   )
