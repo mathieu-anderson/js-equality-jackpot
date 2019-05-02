@@ -166,14 +166,11 @@ const App: React.FC = () => {
           >
             {getStringifiedValue(values.left)}
           </div>
-          <div className='Slots-line-slot-withSubtitle'>
-            <div
-              className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}
-              onAnimationEnd={() => setRotate(false)}
-            >
-              {operator}
-            </div>
-            <div className='Slots-line-slot-subtitle'>{operatorSubtitles[operator]}</div>
+          <div
+            className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}
+            onAnimationEnd={() => setRotate(false)}
+          >
+            {operator}
           </div>
           <div
             className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}

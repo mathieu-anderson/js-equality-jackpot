@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 3em;
+  font-size: 5vw;
   padding: 1rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -24,7 +24,6 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  width: 100vw;
 }
 
 .Slots-button {
@@ -33,6 +32,7 @@
   cursor: pointer;
   border: none;
   border-radius: 4px;
+  font-size: 3vw;
   width: 10rem;
   height: 4rem;
   color: white;
@@ -169,8 +169,8 @@
     transform: rotateX(0);
   }
   100% {
-    -webkit-transform: rotateX(-360deg);
-    transform: rotateX(-360deg);
+    -webkit-transform: rotateX(-720deg);
+    transform: rotateX(-720deg);
   }
 }
 @keyframes rotate-hor-center {
@@ -179,8 +179,8 @@
     transform: rotateX(0);
   }
   100% {
-    -webkit-transform: rotateX(-360deg);
-    transform: rotateX(-360deg);
+    -webkit-transform: rotateX(-720deg);
+    transform: rotateX(-720deg);
   }
 }
 
@@ -190,15 +190,14 @@
 }
 
 .Slots-line-slot {
-  flex-shrink: 3;
   border: 1px dotted #a0a0a1;
   border-radius: 5px;
-  width: 12rem;
-  height: 10rem;
+  width: 13vw;
+  min-width: 7rem;
+  height: 9rem;
   margin: 0 1rem;
-  font-size: 2em;
   text-align: center;
-  line-height: 10rem;
+  line-height: 9rem;
 }
 
 .Slots-line-slot-subtitle {
@@ -208,7 +207,6 @@
 
 .Slots-line-results-true {
   color: green;
-  font-size: 3em;
   font-weight: bold;
   margin: 1rem 0;
   text-align: center;
@@ -216,8 +214,27 @@
 
 .Slots-line-results-false {
   color: red;
-  font-size: 3em;
   font-weight: bold;
   margin: 1rem 0;
   text-align: center;
+}
+
+@media screen and (min-width: 320px) {
+  .Slots-line-slot {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+  .Slots-line-results-true,
+  .Slots-line-results-false {
+    font-size: calc(2em + 6 * ((100vw - 320px) / 680));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .Slots-line-slot {
+    font-size: calc(1em + 6 * ((100vw - 320px) / 680));
+  }
+  .Slots-line-results-true,
+  .Slots-line-results-false {
+    font-size: 3em;
+  }
 }
