@@ -26,7 +26,7 @@
   align-items: center;
 }
 
-.Slots-button {
+.Slots-button-roll {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #aaf;
   cursor: pointer;
@@ -42,8 +42,56 @@
   margin: 1rem;
 }
 
-.Slots-button:hover {
+.Slots-button-roll:hover {
   background-color: rgb(98, 98, 255);
+}
+
+.Slots-answer {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 1rem;
+}
+
+.Slots-answer-text {
+  line-height: 5rem;
+}
+
+.Slots-answer-button {
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+  border: 1px dotted #a0a0a1;
+  border-radius: 4px;
+  font-size: 2vw;
+  width: 7rem;
+  height: 3rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.5em;
+  margin: 1rem;
+}
+
+.button-true:hover {
+  background-color: rgba(0, 128, 0, 0.13);
+  border: 1px dotted green;
+}
+
+.button-true-selected {
+  background-color: rgba(0, 128, 0, 0.13);
+  border: 1px dotted green;
+  color: green;
+  font-weight: bold;
+}
+
+.button-false:hover {
+  background-color: rgba(255, 0, 0, 0.13);
+  border: 1px dotted red;
+}
+
+.button-false-selected {
+  background-color: rgba(255, 0, 0, 0.13);
+  border: 1px dotted red;
+  color: red;
+  font-weight: bold;
 }
 
 .Slots-checkbox {
@@ -200,20 +248,8 @@
   line-height: 9rem;
 }
 
-.Slots-line-slot-subtitle {
-  text-align: center;
-  font-size: 0.8em;
-}
-
-.Slots-line-results-true {
-  color: green;
-  font-weight: bold;
-  margin: 1rem 0;
-  text-align: center;
-}
-
-.Slots-line-results-false {
-  color: red;
+.Slots-line-results {
+  min-height: 4.5rem;
   font-weight: bold;
   margin: 1rem 0;
   text-align: center;
@@ -223,9 +259,8 @@
   .Slots-line-slot {
     font-size: calc(16px + 6 * ((100vw - 320px) / 680));
   }
-  .Slots-line-results-true,
-  .Slots-line-results-false {
-    font-size: calc(2em + 6 * ((100vw - 320px) / 680));
+  .Slots-line-results {
+    font-size: calc(1.7em + 6 * ((100vw - 320px) / 680));
   }
 }
 
@@ -233,8 +268,7 @@
   .Slots-line-slot {
     font-size: calc(1em + 6 * ((100vw - 320px) / 680));
   }
-  .Slots-line-results-true,
-  .Slots-line-results-false {
-    font-size: 3em;
+  .Slots-line-results {
+    font-size: 1.7em;
   }
 }

@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { isEqual } from 'lodash'
 import './App.css'
 
-const getRandomArrayMember = (array: any[]): string =>
-  array[Math.floor(Math.random() * array.length)]
+const getRandomArrayMember = (array: any[]) => array[Math.floor(Math.random() * array.length)]
 
 const getStringifiedValue = (value: any): string => {
   if (isEqual(value, null)) {
@@ -47,28 +46,20 @@ const getResult = (leftValue: any, rightValue: any, operator: Operator): boolean
   }
 }
 
-const getWeirdnessStatement = (
-  result: string,
-  leftValue: string,
-  rightValue: string,
-  operator: string
-) => {
-  if (
-    weirdEqualities.includes(`${leftValue} ${operator} ${rightValue}`) ||
-    weirdEqualities.includes(`${rightValue} ${operator} ${leftValue}`)
-  ) {
-    return (
-      <div className={result === 'true' ? 'Slots-line-results-true' : 'Slots-line-results-false'}>
-        {result} AND FKEN WEIRD
-      </div>
+// Write a test for this, it looks like it is not always getting it right
+const checkExpressionForWeirdness = (leftValue: any, operator: Operator, rightValue: any) => {
+  return (
+    weirdEqualities.includes(
+      `${getStringifiedValue(leftValue)} ${getStringifiedValue(operator)} ${getStringifiedValue(
+        rightValue
+      )}`
+    ) ||
+    weirdEqualities.includes(
+      `${getStringifiedValue(rightValue)} ${getStringifiedValue(operator)} ${getStringifiedValue(
+        leftValue
+      )}`
     )
-  } else {
-    return (
-      <div className={result === 'true' ? 'Slots-line-results-true' : 'Slots-line-results-false'}>
-        {result}
-      </div>
-    )
-  }
+  )
 }
 
 const weirdEqualities = [
@@ -121,13 +112,6 @@ type Operator = '==' | '===' | '!=' | '!=='
 const operators: Operator[] = ['==', '===', '!=', '!==']
 const crazyOperators: Operator[] = ['==', '!=']
 
-const operatorSubtitles: { [index: string]: string } = {
-  '==': 'is equal to',
-  '===': 'is strictly equal to',
-  '!=': 'is not equal to',
-  '!==': 'is not strictly equal to',
-}
-
 interface Values {
   left: any
   right: any
@@ -142,6 +126,22 @@ const App: React.FC = () => {
   const [result, setResult] = useState(getResult(values.left, values.right, operator).toString())
   const [rotate, setRotate] = useState(false)
   const [crazyMode, setCrazyMode] = useState(false)
+  const [showAnswer, setShowAnswer] = useState(false)
+  const [answerGiven, setAnswerGiven] = useState<string>('')
+  const [isWeird, setIsWeird] = useState(false)
+
+  const handleClick = (value: string) => {
+    if (result === value) {
+      setAnswerGiven(value)
+      setShowAnswer(true)
+    } else {
+      setAnswerGiven(value)
+      setShowAnswer(true)
+    }
+  }
+
+  const checkAnswer = (answer: string) => answer.toString() === result
+
   return (
     <div className='App'>
       <header className='App-header'>JavaScript Equality Jackpot</header>
@@ -161,6 +161,7 @@ const App: React.FC = () => {
                 right: nextRightValue,
               })
               setOperator(nextOperator)
+              setIsWeird(checkExpressionForWeirdness(nextLeftValue, operator, nextRightValue))
               setResult(getResult(nextLeftValue, nextRightValue, nextOperator).toString())
             }}
           >
@@ -179,10 +180,42 @@ const App: React.FC = () => {
             {getStringifiedValue(values.right)}
           </div>
         </div>
-        {getWeirdnessStatement(result, values.left, values.right, operator)}
+        <div className='Slots-answer'>
+          <div className='Slots-answer-text'>Evaluates to...</div>
+          <button
+            className={`Slots-answer-button button-true ${
+              showAnswer && answerGiven === 'true' ? 'button-true-selected' : ''
+            }`}
+            onClick={() => handleClick('true')}
+          >
+            true
+          </button>
+          <button
+            className={`Slots-answer-button button-false ${
+              showAnswer && answerGiven === 'false' ? 'button-false-selected' : ''
+            }`}
+            onClick={() => handleClick('false')}
+          >
+            false
+          </button>
+        </div>
+        {
+          <div className='Slots-line-results'>
+            {showAnswer && (
+              <>
+                {checkAnswer(answerGiven)
+                  ? `⭐ Correct! It evaluates to `
+                  : `❌ Nope, it evaluates to `}
+                {result}
+                {isWeird ? ` AND IT'S FKEN WEIRD` : null}
+              </>
+            )}
+          </div>
+        }
         <button
-          className='Slots-button'
+          className='Slots-button-roll'
           onClick={() => {
+            setShowAnswer(false)
             setRotate(true)
           }}
         >
