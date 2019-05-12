@@ -1,4 +1,8 @@
+html,
 body {
+  min-height: 100%;
+  min-width: 100%;
+  overflow: hidden;
   margin: 0;
   padding: 0;
   font-family: 'Courier New', Courier, monospace;
