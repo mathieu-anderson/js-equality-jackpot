@@ -54,7 +54,7 @@
 .Slots-answer-button {
   font-family: 'Courier New', Courier, monospace;
   cursor: pointer;
-  border: 1px dotted #a0a0a1;
+  border: 1px solid #a0a0a1;
   border-radius: 4px;
   font-size: 2vw;
   width: 7rem;
@@ -63,6 +63,7 @@
   text-decoration: none;
   font-size: 1.5em;
   margin: 1rem;
+  margin: 0.5rem 1rem;
 }
 
 .button-true:hover {
@@ -233,31 +234,36 @@
 }
 
 .Slots-line-slot {
-  border: 1px dotted #a0a0a1;
+  border: 2px dotted #a0a0a1;
   border-radius: 5px;
   width: 13vw;
   text-align: center;
+  font-weight: bold;
 }
 
 .Slots-line-results {
-  min-height: 4.5rem;
   font-weight: bold;
-  margin: 1rem 0;
   text-align: center;
 }
 
 @media screen and (min-width: 320px) {
   .App-header {
     height: 2vh;
+    margin-bottom: 1rem;
   }
 
   .Slots-answer {
     display: flex;
     flex-flow: column nowrap;
+    margin-top: 0.5rem;
   }
 
   .Slots-answer-text {
     line-height: 3rem;
+  }
+
+  .Slots-answer-button {
+    margin: 0.5rem 1rem;
   }
 
   .Slots-line-slot {
@@ -267,14 +273,21 @@
     line-height: 4rem;
     margin: 0 0.4rem;
   }
+
   .Slots-line-results {
-    font-size: calc(1.7em + 6 * ((100vw - 320px) / 680));
+    min-height: 3.7rem;
+    margin: 0.5rem 0;
+  }
+
+  .Slots-line-results {
+    font-size: calc(1.5em + 6 * ((100vw - 320px) / 680));
   }
 }
 
 @media screen and (min-width: 800px) {
   .App-header {
     height: 15vh;
+    margin-bottom: 2rem;
   }
 
   .Slots-answer {
@@ -287,6 +300,15 @@
     line-height: 5rem;
   }
 
+  .Slots-answer-button {
+    margin: 1rem;
+  }
+
+  .Slots-line-results {
+    min-height: 2.3rem;
+    margin: 1rem 0;
+  }
+
   .Slots-line-slot {
     font-size: calc(1em + 6 * ((100vw - 320px) / 680));
     min-width: 7rem;
@@ -294,6 +316,7 @@
     margin: 0 1rem;
     line-height: 9rem;
   }
+
   .Slots-line-results {
     font-size: 1.7em;
   }

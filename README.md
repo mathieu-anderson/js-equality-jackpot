@@ -19,7 +19,7 @@ npm start
 ## Todo
 
 - ~Make it a game (hide true / false evaluation and let the user guess)~
-- Remake the layout so that it is properly responsive (not with weird hacks like currently)
+- ~Remake the layout so that it is properly responsive (not with weird hacks like currently)~ Eh, it's ok now I guess
 - Implement basic leaderboard, pinball style
 - Add more weird cases
 - Add tests (learn `react-testing-library` ?)
