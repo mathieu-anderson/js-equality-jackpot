@@ -282,6 +282,11 @@
   .Slots-line-results {
     font-size: calc(1.5em + 6 * ((100vw - 320px) / 680));
   }
+
+  .Slots-checkbox-label {
+    font-size: 0.8em;
+    margin-top: 0.3em;
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -319,5 +324,46 @@
 
   .Slots-line-results {
     font-size: 1.7em;
+  }
+
+  .Slots-checkbox-label {
+    font-size: 1em;
+    margin-top: 0;
+  }
+}
+
+.octo {
+  fill: #aaf;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  border: 0;
+  left: 0;
+  transform: rotate(180deg);
+}
+.github-corner:hover .octo-arm {
+  transform-origin: 130px 106px;
+  animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
   }
 }
