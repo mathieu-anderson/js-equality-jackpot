@@ -8,7 +8,6 @@
   background-color: #aaf;
   color: white;
   font-weight: bold;
-  height: 15vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -50,10 +49,6 @@
   display: flex;
   flex-flow: row nowrap;
   margin-top: 1rem;
-}
-
-.Slots-answer-text {
-  line-height: 5rem;
 }
 
 .Slots-answer-button {
@@ -241,11 +236,7 @@
   border: 1px dotted #a0a0a1;
   border-radius: 5px;
   width: 13vw;
-  min-width: 7rem;
-  height: 9rem;
-  margin: 0 1rem;
   text-align: center;
-  line-height: 9rem;
 }
 
 .Slots-line-results {
@@ -256,17 +247,52 @@
 }
 
 @media screen and (min-width: 320px) {
+  .App-header {
+    height: 2vh;
+  }
+
+  .Slots-answer {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  .Slots-answer-text {
+    line-height: 3rem;
+  }
+
   .Slots-line-slot {
     font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+    min-width: 6rem;
+    height: 4rem;
+    line-height: 4rem;
+    margin: 0 0.4rem;
   }
   .Slots-line-results {
     font-size: calc(1.7em + 6 * ((100vw - 320px) / 680));
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 800px) {
+  .App-header {
+    height: 15vh;
+  }
+
+  .Slots-answer {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 1rem;
+  }
+
+  .Slots-answer-text {
+    line-height: 5rem;
+  }
+
   .Slots-line-slot {
     font-size: calc(1em + 6 * ((100vw - 320px) / 680));
+    min-width: 7rem;
+    height: 9rem;
+    margin: 0 1rem;
+    line-height: 9rem;
   }
   .Slots-line-results {
     font-size: 1.7em;
