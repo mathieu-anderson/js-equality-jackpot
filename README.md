@@ -1,5 +1,5 @@
 [
-![Screenshot of weirdness](https://i.imgur.com/Kl0q48N.png)
+![Screenshot of weirdness](https://i.imgur.com/RtOGCnw.jpg)
 ](http://js-equality-jackpot.surge.sh/)
 
 ## JS Equality Jackpot
