@@ -47,18 +47,10 @@ const getResult = (leftValue: any, rightValue: any, operator: Operator): boolean
 }
 
 // Write a test for this, it looks like it is not always getting it right
-const checkExpressionForWeirdness = (leftValue: any, operator: Operator, rightValue: any) => {
+const checkExpressionForWeirdness = (leftValue: string, operator: string, rightValue: string) => {
   return (
-    weirdEqualities.includes(
-      `${getStringifiedValue(leftValue)} ${getStringifiedValue(operator)} ${getStringifiedValue(
-        rightValue
-      )}`
-    ) ||
-    weirdEqualities.includes(
-      `${getStringifiedValue(rightValue)} ${getStringifiedValue(operator)} ${getStringifiedValue(
-        leftValue
-      )}`
-    )
+    weirdEqualities.includes(`${leftValue} ${operator} ${rightValue}`) ||
+    weirdEqualities.includes(`${rightValue} ${operator} ${leftValue}`)
   )
 }
 
@@ -130,13 +122,6 @@ const App: React.FC = () => {
   const [answerGiven, setAnswerGiven] = useState<string>('')
   const [isWeird, setIsWeird] = useState(false)
 
-  const handleClick = (value: string) => {
-    setAnswerGiven(value)
-    setShowAnswer(true)
-  }
-
-  const checkAnswer = (answer: string) => answer.toString() === result
-
   return (
     <div className='App'>
       <a
@@ -160,39 +145,33 @@ const App: React.FC = () => {
       </a>
       <header className='App-header'>JavaScript Equality Jackpot</header>
       <section className='Slots'>
-        <div className='Slots-line'>
-          <div
-            className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}
-            onAnimationEnd={() => {
-              setRotate(false)
-              const nextLeftValue = getRandomArrayMember(sourceValues)
-              const nextRightValue = getRandomArrayMember(sourceValues)
-              const nextOperator = crazyMode
-                ? (getRandomArrayMember(crazyOperators) as Operator)
-                : (getRandomArrayMember(operators) as Operator)
-              setValues({
-                left: nextLeftValue,
-                right: nextRightValue,
-              })
-              setOperator(nextOperator)
-              setIsWeird(checkExpressionForWeirdness(nextLeftValue, operator, nextRightValue))
-              setResult(getResult(nextLeftValue, nextRightValue, nextOperator).toString())
-            }}
-          >
-            {getStringifiedValue(values.left)}
-          </div>
-          <div
-            className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}
-            onAnimationEnd={() => setRotate(false)}
-          >
-            {operator}
-          </div>
-          <div
-            className={`Slots-line-slot ${rotate ? 'rotate' : ''}`}
-            onAnimationEnd={() => setRotate(false)}
-          >
-            {getStringifiedValue(values.right)}
-          </div>
+        <div
+          className={`Slots-line ${rotate ? 'rotate' : ''}`}
+          onAnimationEnd={() => {
+            setRotate(false)
+            const nextLeftValue = getRandomArrayMember(sourceValues)
+            const nextRightValue = getRandomArrayMember(sourceValues)
+            const nextOperator = crazyMode
+              ? (getRandomArrayMember(crazyOperators) as Operator)
+              : (getRandomArrayMember(operators) as Operator)
+            setValues({
+              left: nextLeftValue,
+              right: nextRightValue,
+            })
+            setOperator(nextOperator)
+            setIsWeird(
+              checkExpressionForWeirdness(
+                getStringifiedValue(nextLeftValue),
+                getStringifiedValue(nextOperator),
+                getStringifiedValue(nextRightValue)
+              )
+            )
+            setResult(getResult(nextLeftValue, nextRightValue, nextOperator).toString())
+          }}
+        >
+          <div className='Slots-line-slot'>{getStringifiedValue(values.left)}</div>
+          <div className='Slots-line-slot'>{operator}</div>
+          <div className='Slots-line-slot'>{getStringifiedValue(values.right)}</div>
         </div>
         <div className='Slots-answer'>
           <div className='Slots-answer-text'>Evaluates to...</div>
@@ -200,7 +179,10 @@ const App: React.FC = () => {
             className={`Slots-answer-button button-true ${
               showAnswer && answerGiven === 'true' ? 'button-true-selected' : ''
             }`}
-            onClick={() => handleClick('true')}
+            onClick={() => {
+              setAnswerGiven('true')
+              setShowAnswer(true)
+            }}
           >
             true
           </button>
@@ -208,7 +190,10 @@ const App: React.FC = () => {
             className={`Slots-answer-button button-false ${
               showAnswer && answerGiven === 'false' ? 'button-false-selected' : ''
             }`}
-            onClick={() => handleClick('false')}
+            onClick={() => {
+              setAnswerGiven('false')
+              setShowAnswer(true)
+            }}
           >
             false
           </button>
@@ -217,7 +202,7 @@ const App: React.FC = () => {
           <div className='Slots-line-results'>
             {showAnswer && (
               <>
-                {checkAnswer(answerGiven)
+                {answerGiven === result
                   ? `⭐ Correct! It evaluates to `
                   : `❌ Nope, it evaluates to `}
                 {result}
