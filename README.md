@@ -20,6 +20,6 @@ npm start
 
 - ~Make it a game (hide true / false evaluation and let the user guess)~
 - ~Remake the layout so that it is properly responsive (not with weird hacks like currently)~ Eh, it's ok now I guess
-- Implement basic leaderboard, pinball style
+- Implement basic leaderboard, pinball style (Airtable? https://medium.com/@gtalarico/using-airtable-as-a-content-backend-e373cd0d9974)
 - Add more weird cases
 - Add tests (learn `react-testing-library` ?)
