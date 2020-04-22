@@ -1,3 +1,5 @@
+gatsby-personal-we[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=flat-square&logo=codesandbox)](https://githubbox.com/mathieu-anderson/js-equality-jackpot)
+
 [
 ![Screenshot of weirdness](https://i.imgur.com/STDY8lG.jpg)
 ](http://js-equality-jackpot.surge.sh/)
